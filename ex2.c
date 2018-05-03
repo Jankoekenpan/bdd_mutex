@@ -71,9 +71,9 @@ int main() {
 
     // leave relation
 
-    BDD leave_pre = sylvan_nithvar(CS);
+    BDD leave_pre = sylvan_set_empty();
     sylvan_protect(&leave_pre);
-    BDD leave_post = sylvan_set_empty();
+    BDD leave_post = sylvan_nithvar(CS_PRIME);
     sylvan_protect(&leave_post);
 
     BDD leave_vars = sylvan_set_empty();
