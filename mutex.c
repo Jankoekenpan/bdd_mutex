@@ -96,8 +96,8 @@ BDD enterRelation(BDD set, BDD vars) {
     BDD requirement_cs      = sylvan_nithvar(CS);
     BDD requirement_wait    = sylvan_ithvar(WAIT);
 
-    BDD requirement_cs_prime    = sylvan_ithvar(CS);
-    BDD requirement_wait_prime  = sylvan_nithvar(WAIT);
+    BDD requirement_cs_prime    = sylvan_ithvar(CS_NEXT);
+    BDD requirement_wait_prime  = sylvan_nithvar(WAIT_NEXT);
 
     BDD precondition    = sylvan_and(requirement_cs, requirement_wait);
     BDD postcondition   = sylvan_and(requirement_cs_prime, requirement_wait_prime);
@@ -111,8 +111,8 @@ BDD exitRelation(BDD set, BDD vars) {
 
     BDD requirement_cs      = sylvan_ithvar(CS);
 
-    BDD requirement_cs_prime        = sylvan_nithvar(CS);
-    BDD requirement_finished_prime  = sylvan_ithvar(FINISHED);
+    BDD requirement_cs_prime        = sylvan_nithvar(CS_NEXT);
+    BDD requirement_finished_prime  = sylvan_ithvar(FINISHED_NEXT);
 
     BDD precondition  = requirement_cs;
     BDD postcondition = sylvan_and(requirement_cs_prime, requirement_finished_prime);
@@ -134,8 +134,8 @@ BDD restartRelation(BDD set, BDD vars) {
 
     BDD requirement_finished        = sylvan_ithvar(FINISHED);
 
-    BDD requirement_wait_prime      = sylvan_ithvar(WAIT);
-    BDD requirement_finished_prime  = sylvan_nithvar(FINISHED);
+    BDD requirement_wait_prime      = sylvan_ithvar(WAIT_NEXT);
+    BDD requirement_finished_prime  = sylvan_nithvar(FINISHED_NEXT);
 
     BDD precondition = requirement_finished;
     BDD postcondition = sylvan_and(requirement_wait_prime, requirement_finished_prime);
