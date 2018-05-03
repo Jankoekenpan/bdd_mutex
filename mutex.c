@@ -11,6 +11,16 @@ enum Var {
     FINISHED_NEXT
 };
 
+BDD makeMap() {
+    LACE_ME;
+
+    BDD map = sylvan_map_empty();
+    map = sylvan_map_add(map, WAIT_NEXT, sylvan_ithvar(WAIT));
+    map = sylvan_map_add(map, CS_NEXT, sylvan_ithvar(CS));
+    map = sylvan_map_add(map, FINISHED_NEXT, sylvan_ithvar(FINISHED));
+
+    return map;
+}
 
 BDD makeVariables() {
     LACE_ME;
@@ -29,6 +39,15 @@ BDD and3(BDD one, BDD two, BDD three) {
     BDD r = sylvan_and(one, two);
     r = sylvan_and(r, three);
     return r;
+}
+
+BDD and6(BDD one, BDD two, BDD three, BDD four, BDD five, BDD six) {
+    LACE_ME;
+
+    BDD x = and3(one, two, three);
+    BDD y = and3(four, five, six);
+
+    return sylvan_and(x, y);
 }
 
 BDD initialState() {
@@ -178,7 +197,6 @@ int main() {
     //TODO look at sylvan_protect and sylvan_unprotect
     //TODO uses pointers to BDDs!
     //TODO use sylvan_compose? where? how? it's used for function composition?
-    //TODO email Michiel/Jeroen
 
     sylvan_stats_report(stderr);
     sylvan_quit();
