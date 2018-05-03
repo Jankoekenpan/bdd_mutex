@@ -124,7 +124,7 @@ BDD exitRelation(BDD set, BDD vars) {
 BDD leaveRelation(BDD set, BDD vars) {
     LACE_ME;
 
-    BDD postcondition = sylvan_nithvar(CS);
+    BDD postcondition = sylvan_nithvar(CS_NEXT);
 
     return sylvan_exists(sylvan_and(set, postcondition), vars);
 }
